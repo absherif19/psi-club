@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* Import Poppins from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Brittany Signature (Locally Hosted) */
+@font-face {
+  font-family: "Brittany Signature";
+  src: url("./assets/Fonts/BrittanySignature.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Utility class for Brittany Signature */
+.font-brittany {
+    font-family: "Brittany Signature", cursive;
+  }
+
+  th{
+    font-weight: 400;
+  }
+
+  
