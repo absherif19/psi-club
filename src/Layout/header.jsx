@@ -49,7 +49,7 @@ const Header = () => {
           <h2 className="text-sm font-semibold text-[#1E222E]">
             Mostafa Hamdy
           </h2>
-          <p className="text-xs text-gray-500">Title here</p>
+          <p className="text-xs text-gray-500 text-start">Title here</p>
         </div>
         <FiChevronDown
           size={16}
@@ -61,10 +61,15 @@ const Header = () => {
         {showDropdown && (
           <div className="absolute top-16 right-0 bg-white rounded-lg shadow-lg w-44 z-10 p-3">
             <button
+              onClick={() => navigate("/my-profile")}
+              className="w-full cursor-pointer flex items-center gap-2 text-[#888888] font-semibold py-2 px-4 rounded-lg "
+            >
+              My Profile
+            </button>
+            <button
               onClick={() => navigate("/")}
               className="w-full cursor-pointer flex items-center gap-2 text-[#E35F27] font-semibold py-2 px-4 rounded-lg "
             >
-              <FiLogOut size={18} />
               Log out
             </button>
           </div>

@@ -1,7 +1,42 @@
 @import "tailwindcss";
+@font-face {
+  font-family: "Poppins";
+  src: url("/src/assets/Fonts/poppins/Poppins-light.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/src/assets/Fonts/poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
 
-/* Import Poppins from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@font-face {
+  font-family: "Poppins";
+  src: url("/src/assets/Fonts/poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/src/assets/Fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/src/assets/Fonts/poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  font-family: "Poppins" !important;
+  overscroll-behavior: none;
+}
 
 /* Brittany Signature (Locally Hosted) */
 @font-face {
@@ -13,11 +48,56 @@
 
 /* Utility class for Brittany Signature */
 .font-brittany {
-    font-family: "Brittany Signature", cursive;
-  }
+  font-family: "Brittany Signature", cursive;
+}
 
-  th{
-    font-weight: 400;
-  }
+th {
+  font-weight: 400;
+}
 
-  
+.shadow-normal {
+  box-shadow: 0px 0px 37px 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  cursor: pointer;
+}
+
+.inputs-shadow {
+  box-shadow: 0px 20px 13px 0px rgba(41, 72, 152, 0.03),
+    0px 8.148px 6.519px 0px rgba(41, 72, 152, 0.02);
+}
+
+.PhoneInputCountrySelectArrow {
+  height: 8px !important;
+  width: 8px !important;
+  margin-left: 8px !important;
+  margin-right: 4px !important;
+  opacity: 1 !important;
+  border-color: #000 !important;
+}
+.PhoneInputCountry{
+  background-color: #EBEBEB;
+  border-radius: 7px;
+background: #EBEBEB;
+    padding: 10px 12px;
+
+}
+.PhoneInputInput{
+  border-radius: 7px;
+border: 1px solid #A6A6A6;
+opacity: 0.4;
+background: #FFF;
+box-shadow: 0px 20px 13px 0px rgba(41, 72, 152, 0.03), 0px 8.148px 6.519px 0px rgba(41, 72, 152, 0.02);
+    padding: 10px 12px;
+
+}
+
+.custom-PhoneInputInput{
+  border: 0px solid #A6A6A6 !important;
+}
+
+.sectionsShadow{
+  box-shadow: 0px 4px 40px 0px rgba(155, 155, 155, 0.25);
+
+}

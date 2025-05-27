@@ -1,25 +1,25 @@
 import React from "react";
 import Layout from "../Layout/layout";
-import MemberKPI from "./KPIs/MemberKPI";
-import CommissionKPI from "./KPIs/CommissionsKPI";
-import MainReferral from "./Referral/MainReferral";
-import MainRequests from "./Requests/MainRequests";
-import MembersMain from './Members/MembersMain';
-import MainAllReferrals from "./AllReferrals/MainAllReferrals";
+import MainReferral from "./KPIs/MainReferral";
+import MainRequests from "./OverviewTabels/MainRequests";
+import MembersMain from "./OverviewTabels/MembersMain";
+import MainAllReferrals from "./OverviewTabels/MainAllReferrals";
+import KpiSummary from "./KPIs/KpiSummary";
 
 const ChairmanView = () => {
   return (
     <Layout>
       <div className="p-6 space-y-10">
         <div className="flex space-x-10">
-          <MemberKPI />
-          <CommissionKPI />
           <MainReferral />
+          <KpiSummary />
         </div>
 
-        <MainRequests />
-        <MembersMain />
-        <MainAllReferrals />
+        <div className="space-y-14">
+          <MainRequests />
+          <MembersMain />
+          <MainAllReferrals />
+        </div>
       </div>
     </Layout>
   );

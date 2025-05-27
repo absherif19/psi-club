@@ -1,15 +1,14 @@
 import React from 'react'
-import BackButton from '../../Reuse/BackButton'
+import BackButton from './../../Reuse/BackButton';
 
-const Header = () => {
+const Title = () => {
   return (
     <div className="flex items-center gap-4">
     <BackButton />
     <h1 className="text-base lg:text-3xl font-semibold text-[#272963]">
-    Lead Details
-    </h1>
+Total Commissions    </h1>
   </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Title

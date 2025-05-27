@@ -7,6 +7,7 @@ import ContactDetails from "./ContactDetails";
 import UnitDetails from "./UnitDetails";
 import LeadDetails from "./LeadDetails";
 import Activities from "./Activities";
+import ConnectionsInfo from "./ConnectionsInfo";
 
 const MainAllDetails = () => {
   const { state } = useLocation();
@@ -21,42 +22,45 @@ const MainAllDetails = () => {
     <Layout>
       <div className="p-6 space-y-6">
         <Header />
-        <MainInfo
-          date={state.date}
-          name={state.name}
-          buyerId={state.id}
-          activeStageIndex={state.activeStageIndex}
-          stages={state.stages}
-        />
-        <ContactDetails
-          details={{
-            contactClass: "Normal",
-            leadClass: "Buyer",
-            leadName: "NA",
-            mobile: "+971 50 000 0000",
-            email: "mostafahamdy@psinv.net",
-          }}
-        />
-        <UnitDetails
-          details={{
-            unitId: "123456789",
-            location: "Abu Dhabi",
-            type: "Apartment",
-            bedroom: 3,
-            bathroom: 2,
-            budget: "10,000",
-          }}
-        />
-        <LeadDetails
-          details={{
-            status: "Closed",
-            rating: "Warm",
-            lastActivity: "New Lead Added - CRM",
-            stage: "New",
-            source: "--",
-          }}
-        />
-        {/* <Activities /> */}
+        <MainInfo status={state.status} name={state.name} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <ContactDetails
+            details={{
+              contactClass: "Normal",
+              leadClass: "Buyer",
+              leadName: "NA",
+              mobile: "+971 50 000 0000",
+              email: "mostafahamdy@psinv.net",
+            }}
+          />
+                    <ConnectionsInfo
+            agentName="Bojana Popovic"
+            activeStageIndex={1}
+          />
+          <UnitDetails
+            details={{
+              unitId: "123456789",
+              location: "Abu Dhabi",
+              type: "Apartment",
+              bedroom: 3,
+              bathroom: 2,
+              budget: "10,000",
+            }}
+          />
+          <LeadDetails
+            details={{
+              status: "Closed",
+              rating: "Warm",
+              lastActivity: "New Lead Added - CRM",
+              stage: "New",
+              source: "--",
+            }}
+          />
+
+        </div>
+
+        <Activities />
       </div>
     </Layout>
   );

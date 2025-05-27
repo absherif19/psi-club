@@ -1,99 +1,172 @@
-import React from 'react';
-import { FiChevronDown, FiCircle } from 'react-icons/fi';
+import React, { useState } from "react";
+import { FiChevronDown, FiCircle } from "react-icons/fi";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 const ReferClientForm = () => {
-  return (
-    <form className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-      {/* Full Name */}
-      <div>
-        <label className="block text-sm font-medium text-[#1E222E] mb-1">
-          Full name <span className="text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          placeholder="Full name"
-          className="w-full border border-[#E2E8F0] rounded-md px-4 py-2 text-sm focus:outline-none"
-        />
-      </div>
+  const [formData, setFormData] = useState({});
 
-      {/* Surname */}
-      <div>
-        <label className="block text-sm font-medium text-[#1E222E] mb-1">
-          Surname
-        </label>
-        <input
-          type="text"
-          placeholder="First name"
-          className="w-full border border-[#E2E8F0] rounded-md px-4 py-2 text-sm focus:outline-none"
-        />
-      </div>
+  const formFields = [
+    {
+      id: "firstName",
+      label: "First name",
+      type: "text",
+      placeholder: "First name",
+      required: true,
+      gridSpan: "md:col-span-1"
+    },
+    {
+      id: "lastName",
+      label: "Last name",
+      type: "text",
+      placeholder: "Last name",
+      required: true,
+      gridSpan: "md:col-span-1"
+    },
+    {
+      id: "email",
+      label: "Email address",
+      type: "email",
+      placeholder: "Email address",
+      required: true,
+      gridSpan: "md:col-span-1"
+    },
+    {
+      id: "interestedTo",
+      label: "Interested to",
+      type: "select",
+      placeholder: "Buy",
+      options: ["Buy", "Rent", "Sell"],
+      required: true,
+      gridSpan: "md:col-span-1"
+    },
+    {
+      id: "phoneNumber",
+      label: "Phone Number",
+      type: "phone",
+      placeholder: "Enter phone number",
+      required: true,
+      gridSpan: "md:col-span-1"
+    },
+    {
+      id: "occupation",
+      label: "Occupation",
+      type: "text",
+      placeholder: "Occupation",
+      required: false,
+      gridSpan: "md:col-span-1"
+    },
+    {
+      id: "notes",
+      label: "Notes",
+      type: "textarea",
+      placeholder: "Notes",
+      rows: 4,
+      required: false,
+      gridSpan: "md:col-span-1"
+    },
+    {
+      id: "nationality",
+      label: "Nationality",
+      type: "select",
+      placeholder: "United Arab Emirates",
+      options: ["United Arab Emirates", "Saudi Arabia", "Qatar", "Kuwait", "Bahrain", "Oman"],
+      required: false,
+      gridSpan: "md:col-span-1"
+    },
+    {
+      id: "workPlace",
+      label: "Work Place",
+      type: "text",
+      placeholder: "Work Place",
+      required: false,
+      gridSpan: "md:col-span-1"
+    }
+  ];
 
-      {/* Email */}
-      <div>
-        <label className="block text-sm font-medium text-[#1E222E] mb-1">
-          Email address <span className="text-red-500">*</span>
-        </label>
-        <input
-          type="email"
-          placeholder="Email address"
-          className="w-full border border-[#E2E8F0] rounded-md px-4 py-2 text-sm focus:outline-none"
-        />
-      </div>
+  const handleInputChange = (fieldId, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [fieldId]: value
+    }));
+  };
 
-      {/* Occupation */}
-      <div>
-        <label className="block text-sm font-medium text-[#1E222E] mb-1">
-          Occupation <span className="text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          placeholder="Occupation"
-          className="w-full border border-[#E2E8F0] rounded-md px-4 py-2 text-sm focus:outline-none shadow-sm"
-        />
-      </div>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Data:", formData);
+  };
 
-      {/* Phone Number */}
-      <div>
-        <label className="block text-sm font-medium text-[#1E222E] mb-1">
-          Phone Number <span className="text-red-500">*</span>
-        </label>
-        <div className="flex items-center border border-[#E2E8F0] rounded-md overflow-hidden">
-          <div className="flex items-center gap-2 px-3 py-2 bg-white border-r border-[#E2E8F0]">
-            <span className="text-sm">+971</span>
-            <FiChevronDown className="text-gray-400" />
+  const renderField = (field) => {
+    const baseInputClasses = "w-full border border-slate-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent";
+    
+    switch (field.type) {
+      case "select":
+        return (
+          <div className="flex items-center border border-slate-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-orange-500 focus-within:border-transparent">
+            <span className="text-sm text-slate-800 flex-grow">
+              {formData[field.id] || field.placeholder}
+            </span>
+            <FiChevronDown className="text-gray-400 w-4 h-4" />
           </div>
-          <input
-            type="text"
-            placeholder="505 33445"
-            className="w-full px-3 py-2 text-sm focus:outline-none"
+        );
+      
+      case "phone":
+        return (
+          <PhoneInput
+            placeholder={field.placeholder}
+            value={formData[field.id]}
+            onChange={(value) => handleInputChange(field.id, value)}
+            defaultCountry="AE"
           />
-        </div>
-      </div>
+        );
+      
+      case "textarea":
+        return (
+          <textarea
+            placeholder={field.placeholder}
+            rows={field.rows}
+            value={formData[field.id] || ""}
+            onChange={(e) => handleInputChange(field.id, e.target.value)}
+            className={`${baseInputClasses} resize-none`}
+          />
+        );
+      
+      default:
+        return (
+          <input
+            type={field.type}
+            placeholder={field.placeholder}
+            value={formData[field.id] || ""}
+            onChange={(e) => handleInputChange(field.id, e.target.value)}
+            className={baseInputClasses}
+          />
+        );
+    }
+  };
 
-      {/* Nationality */}
-      <div>
-        <label className="block text-sm font-medium text-[#1E222E] mb-1">
-          Nationality <span className="text-red-500">*</span>
-        </label>
-        <div className="flex items-center border border-[#E2E8F0] rounded-md px-3 py-2">
-          <span className="text-sm text-[#1E222E] flex-grow">
-            United Arab Emirates
-          </span>
-          <FiChevronDown className="text-gray-400" />
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+      {formFields.map((field) => (
+        <div key={field.id} className={field.gridSpan}>
+          <label className="block text-sm font-medium text-slate-800 mb-1">
+            {field.label} {field.required && <span className="text-red-500">*</span>}
+          </label>
+          {renderField(field)}
         </div>
-      </div>
+      ))}
 
       {/* Submit Button */}
       <div className="md:col-span-2 flex justify-end mt-2">
         <button
           type="submit"
-          className="bg-[#EB5E28] hover:bg-[#d34e1f] text-white px-8 py-2 rounded-md flex items-center gap-2"
+          onClick={handleSubmit}
+          className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-2 rounded-md flex items-center gap-2 transition-colors"
         >
-          <FiCircle className="text-white" />
+          <FiCircle  className="w-4 h-4" />
           Add
         </button>
       </div>
-    </form>
+    </div>
   );
 };
 

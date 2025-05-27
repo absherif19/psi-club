@@ -6,7 +6,7 @@ const Header = () => {
     <div className="flex items-center gap-4">
     <BackButton />
     <h1 className="text-base lg:text-3xl font-semibold text-[#272963]">
-    Lead Details
+    My Profile
     </h1>
   </div>
   )
