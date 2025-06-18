@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { createColumnHelper } from "@tanstack/react-table";
 import avatar from "../../assets/avatar.png";
 import bojana from "../../assets/bojana.png";
 import OverviewTabel from "../../Reuse/overviewTabel";
@@ -41,67 +42,76 @@ const statusColors = {
 
 const ReferralsTable = () => {
   const navigate = useNavigate();
+  const columnHelper = createColumnHelper();
 
   const columns = [
-    {
-      label: "ID",
-      render: (row) => <span>{row.id}</span>,
-    },
-    {
-      label: "Lead Name",
-      render: (row) => (
-        <div className="flex items-center gap-3">
-          <img src={row.nameAvatar} alt={row.name} />
-          <span>{row.name}</span>
-        </div>
-      ),
-    },
-    {
-      label: "Assign to",
-      render: (row) => (
-        <div className="flex items-center gap-3">
-          <img src={row.agentAvatar} alt={row.agent} />
-          <span>{row.agent}</span>
-        </div>
-      ),
-    },
-    {
-      label: "Referred Date",
-      key: "date",
-    },
-    {
-      label: "Status",
-      render: (row) => (
-        <span className={`font-medium ${statusColors[row.status]}`}>
-          {row.status}
-        </span>
-      ),
-    },
-    {
-      label: "",
-      align: "right",
-      render: (row) => (
-        <button
-          onClick={() =>
-            navigate(`/referral/${row.id}`, {
-              state: row,
-            })
-          }
-          className="border border-[#5A5A5A] text-[#5A5A5A] px-4 py-1 rounded-lg"
-        >
-          View
-        </button>
-      ),
-    },
+    columnHelper.accessor("id", {
+      header: "ID",
+      cell: (info) => <span>{info.getValue()}</span>,
+    }),
+    columnHelper.accessor("name", {
+      header: "Lead Name",
+
+      cell: (info) => {
+        const row = info.row.original;
+        return (
+          <div className="flex items-center gap-3">
+            <img src={row.nameAvatar} alt={row.name} className="w-8 h-8 rounded-full" />
+            <span>{row.name}</span>
+          </div>
+        );
+      },
+    }),
+    columnHelper.accessor("agent", {
+      header: "Assign to",
+      cell: (info) => {
+        const row = info.row.original;
+        return (
+          <div className="flex items-center gap-3">
+            <img src={row.agentAvatar} alt={row.agent} className="w-8 h-8 rounded-full" />
+            <span>{row.agent}</span>
+          </div>
+        );
+      },
+    }),
+    columnHelper.accessor("date", {
+      header: "Referred Date",
+      cell: (info) => <span>{info.getValue()}</span>,
+    }),
+    columnHelper.accessor("status", {
+      header: "Status",
+      cell: (info) => {
+        const value = info.getValue();
+        return <span className={`font-medium ${statusColors[value]}`}>{value}</span>;
+      },
+    }),
+    columnHelper.display({
+      id: "actions",
+      header: "",
+      cell: (info) => {
+        const row = info.row.original;
+        return (
+          <div className="text-right">
+            <button
+              onClick={() => navigate(`/referral/${row.id}`, { state: row })}
+              className="border border-[#5A5A5A] text-[#5A5A5A] px-4 py-1 rounded-lg"
+            >
+              View
+            </button>
+          </div>
+        );
+      },
+      meta: { align: "right" },
+    }),
   ];
 
   return (
     <OverviewTabel
-      title="My Referrals ( Leads )"
+      title="My Referrals (Leads)"
       buttonLabel="View all"
       onButtonClick={() => navigate("/all-my-referrals")}
       columns={columns}
-      rows={referrals}
+      data={referrals}
     />
   );
 };

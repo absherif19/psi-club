@@ -7,6 +7,10 @@ import ChairmanView from './CEOsView/main';
 import TotalCommissionsPage from './MemberView/TotalCommissions/TotalCommissions';
 import MainMyProfile from './MemberView/MyProfile/Main';
 import ReferralMain from './Reuse/MyAllReferrals/MainAllReferrals';
+import CeoMembersMain from './CEOsView/CeosMembers/main';
+import MainTotalComm from './CEOsView/TotalComm/Main';
+import MainRequests from './CEOsView/Requests/Main';
+import MainMemberDetails from './CEOsView/Member-Details/Main';
 
 function App() {
   return (
@@ -21,6 +25,10 @@ function App() {
         <Route path="/all-my-commissions" element={<TotalCommissionsPage />} />
         <Route path="/referral/:id" element={<MainAllDetails />} />
         <Route path="/my-profile" element={<MainMyProfile />} />
+        <Route path="/ceos-members" element={<CeoMembersMain />} />
+        <Route path="/total-commissions" element={<MainTotalComm />} />
+        <Route path="/membership-requests" element={<MainRequests />} />
+        <Route path="/member/:id" element={<MainMemberDetails />} />
       </Routes>
     </Router>
   );

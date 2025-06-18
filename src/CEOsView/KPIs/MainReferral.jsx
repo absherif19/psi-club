@@ -24,7 +24,7 @@ const MainReferral = () => {
 
         <div>
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/ceos-members")}
             className="bg-[#E35F27] hover:bg-[#d34e1f] text-white text-md  px-6 py-2 rounded-md transition flex items-center gap-2"
           >
             Details

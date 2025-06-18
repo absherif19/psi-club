@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
       <Header />
 
       {/* Main content */}
-      <main className="flex-grow px-12">
+      <main className="flex-grow px-18 p-6 space-y-6">
         {children}
       </main>
 

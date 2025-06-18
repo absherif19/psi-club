@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import LoginForm from "./Login";
-import SignUpForm from "./Signup";
 import ImageSection from "./ImageSection";
+import SignupForm from "./Signup";
 
 const LoginWrapper = () => {
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+
+  const switchToSignup = () => setIsLogin(false);
+  const switchToLogin = () => setIsLogin(true);
 
   return (
     <div className="flex flex-col lg:flex-row h-screen">
-      {isSignUp ? (
-        <SignUpForm onSwitch={() => setIsSignUp(false)} />
+      {isLogin ? (
+        <LoginForm onSwitch={switchToSignup} />
       ) : (
-        <LoginForm onSwitch={() => setIsSignUp(true)} />
+        <SignupForm onSwitch={switchToLogin} />
       )}
       <ImageSection />
     </div>

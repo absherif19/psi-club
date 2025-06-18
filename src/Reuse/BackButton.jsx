@@ -8,6 +8,7 @@ const BackButton = ({ onClick, className }) => {
     if (onClick) {
       onClick(); // Use custom function if provided
     } else {
+      console.log(window.history.length); 
       navigate(-1); // Default behavior: navigate back
     }
   };
@@ -17,7 +18,7 @@ const BackButton = ({ onClick, className }) => {
       onClick={handleBack}
       className={`flex items-center justify-center rounded-full hover:bg-gray-100 transition ${className}`}
     >
-      <img src={backArrow} alt="Back" className="w-8 h-8" />
+      <img src={backArrow} alt="Back" className="w-12 h-12" />
     </button>
   );
 };
